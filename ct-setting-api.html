@@ -1,0 +1,84 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-ajax/iron-ajax.html">
+<link rel="import" href="../ct-core-utils/ct-api-provider-behaviour.html">
+
+<!--
+`ct-setting-api`
+Api calls for setting endpoint
+
+@demo demo/index.html
+-->
+<dom-module id="ct-setting-api">
+
+      <template>
+          <iron-ajax id="getSettings"></iron-ajax>
+          <iron-ajax id="getSetting"></iron-ajax>
+          <iron-ajax id="getSettingByCategory"></iron-ajax>
+          <iron-ajax id="updateSetting"></iron-ajax>
+
+      </template>
+
+  <script>
+    Polymer({
+
+      is: 'ct-setting-api',
+
+      behaviors: [CT.Behaviours.ApiProvider],
+      /**
+       * Get all settings
+       *
+       * @returns {Promise}
+       */
+      getSettings: function() {
+          var url = '/settings';
+          this.$.getSetting.method = 'GET';
+          this.$.getSettings.url = this._url(url);
+          return this._generateRequest(this.$.getSettings);
+      },
+
+      /**
+       * Get a single setting
+       * @param id the key of the setting
+       *
+       * @returns {Promise}
+       */
+      getSettings: function(id) {
+          var url = '/settings/'+ id;
+          this.$.getSetting.method = 'GET';
+          this.$.getSetting.url = this._url(url);
+          return this._generateRequest(this.$.getSetting);
+      },
+
+      /**
+       * Get a single setting
+       * @param id the key of the setting
+       *
+       * @returns {Promise}
+       */
+      getSettings: function(id) {
+          var url = '/settings/'+ id;
+          this.$.getSetting.method = 'GET';
+          this.$.getSetting.url = this._url(url);
+          return this._generateRequest(this.$.getSetting);
+      },
+
+      /**
+       * Remove users from a group
+       *
+       *  @param {Object} body
+       *  @param {String} body.key
+       *  @param {String} body.value
+       *  @param {String} body.category
+       *
+       * @returns {Promise}
+       */
+      updateSetting: function(body, id) {
+          this.$.updateSetting.url = this._url('/settings' );
+          this.$.updateSetting.method = 'PUT';
+          this.$.updateSetting.contentType = "application/json";
+          this.$.updateSetting.body = body;
+          return this._generateRequest(this.$.updateSetting);
+      },
+    });
+  </script>
+</dom-module>
