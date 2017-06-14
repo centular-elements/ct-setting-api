@@ -13,7 +13,7 @@ Api calls for setting endpoint
       <template>
           <iron-ajax id="getSettings"></iron-ajax>
           <iron-ajax id="getSetting"></iron-ajax>
-          <iron-ajax id="getSettingByCategory"></iron-ajax>
+          <iron-ajax id="getSettingsByCategory"></iron-ajax>
           <iron-ajax id="updateSetting"></iron-ajax>
 
       </template>
@@ -38,7 +38,7 @@ Api calls for setting endpoint
 
       /**
        * Get a single setting
-       * @param id the key of the setting
+       * @param {Setting} id the key of the setting
        *
        * @returns {Promise}
        */
@@ -51,11 +51,11 @@ Api calls for setting endpoint
 
       /**
        * Get a single setting
-       * @param id the key of the setting
+       * @param {String} category
        *
        * @returns {Promise}
        */
-      getSettings: function(id) {
+      getSettingsByCategory: function(category) {
           var url = '/settings/'+ id;
           this.$.getSetting.method = 'GET';
           this.$.getSetting.url = this._url(url);
