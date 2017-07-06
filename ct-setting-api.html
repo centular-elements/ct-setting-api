@@ -42,7 +42,7 @@ Api calls for setting endpoint
        *
        * @returns {Promise}
        */
-      getSettings: function(id) {
+      getSetting: function(id) {
           var url = '/settings/'+ id;
           this.$.getSetting.method = 'GET';
           this.$.getSetting.url = this._url(url);
