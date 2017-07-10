@@ -56,7 +56,7 @@ Api calls for setting endpoint
        * @returns {Promise}
        */
       getSettingsByCategory: function(category) {
-          var url = '/settings/'+ id;
+          var url = '/settings/'+ category;
           this.$.getSetting.method = 'GET';
           this.$.getSetting.url = this._url(url);
           return this._generateRequest(this.$.getSetting);
