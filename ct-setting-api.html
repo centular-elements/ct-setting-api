@@ -11,11 +11,11 @@ Api calls for setting endpoint
 <dom-module id="ct-setting-api">
 
       <template>
+          <iron-ajax id="addSetting"></iron-ajax>
           <iron-ajax id="getSettings"></iron-ajax>
           <iron-ajax id="getSetting"></iron-ajax>
           <iron-ajax id="getSettingsByCategory"></iron-ajax>
           <iron-ajax id="updateSetting"></iron-ajax>
-
       </template>
 
   <script>
@@ -24,6 +24,25 @@ Api calls for setting endpoint
       is: 'ct-setting-api',
 
       behaviors: [CT.Behaviours.ApiProvider],
+
+
+      /**
+       * Create a new setting
+       *
+       * @param {Object[]} params
+       *
+       * @returns {Promise}
+       */
+
+       addSetting: function(params) {
+         this.$.addSetting.url=this._url('/settings');
+         this.$.addSetting.method = 'POST';
+         this.$.addSetting.contentType = "application/json";
+         this.$.addSetting.body = params;
+         return this._generateRequest(this.$.addSetting);
+       },
+
+
       /**
        * Get all settings
        *
@@ -56,7 +75,7 @@ Api calls for setting endpoint
        * @returns {Promise}
        */
       getSettingsByCategory: function(category) {
-          var url = '/settings/'+ category;
+          var url = '/settings/category/'+ category;
           this.$.getSetting.method = 'GET';
           this.$.getSetting.url = this._url(url);
           return this._generateRequest(this.$.getSetting);
