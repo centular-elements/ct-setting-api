@@ -35,7 +35,7 @@ Api calls for setting endpoint
        */
 
        addSetting: function(params) {
-         this.$.addSetting.url=this._url('/settings');
+         this.$.addSetting.url=this._url('/settings/category/');
          this.$.addSetting.method = 'POST';
          this.$.addSetting.contentType = "application/json";
          this.$.addSetting.body = params;
@@ -76,9 +76,9 @@ Api calls for setting endpoint
        */
       getSettingsByCategory: function(category) {
           var url = '/settings/category/'+ category;
-          this.$.getSetting.method = 'GET';
-          this.$.getSetting.url = this._url(url);
-          return this._generateRequest(this.$.getSetting);
+          this.$.getSettingsByCategory.method = 'GET';
+          this.$.getSettingsByCategory.url = this._url(url);
+          return this._generateRequest(this.$.getSettingsByCategory);
       },
 
       /**
@@ -91,11 +91,11 @@ Api calls for setting endpoint
        *
        * @returns {Promise}
        */
-      updateSetting: function(body, id) {
+      updateSetting: function(updateSetting) {
           this.$.updateSetting.url = this._url('/settings' );
           this.$.updateSetting.method = 'PUT';
           this.$.updateSetting.contentType = "application/json";
-          this.$.updateSetting.body = body;
+          this.$.updateSetting.body = updateSetting;
           return this._generateRequest(this.$.updateSetting);
       },
     });
